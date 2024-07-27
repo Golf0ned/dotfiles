@@ -2,7 +2,8 @@
 
 All my dotfiles. Contains:
 
-* neovim (.config/nvim)
+* neovim (`.config/nvim`)
+* tmux (`.tmux.conf`)
 
 Works on bash (WSL Ubuntu) at minimum. Use at your own risk.
 
