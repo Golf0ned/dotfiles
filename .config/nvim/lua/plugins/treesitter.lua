@@ -4,7 +4,7 @@ return {
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = {
-                "bash"
+                "bash",
                 "c",
                 "cpp",
                 "css",
@@ -13,7 +13,6 @@ return {
                 "llvm",
                 "lua",
                 "markdown",
-                "markdown-inline",
                 "python",
                 "query",
                 "rust",
