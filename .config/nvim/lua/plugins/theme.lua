@@ -10,15 +10,13 @@ return {
         end
     },
     {
-        "vim-airline/vim-airline",
-        dependencies = {"vim-airline/vim-airline-themes"},
-        config = function()
-            vim.cmd[[
-                let g:airline#extensions#tabline#enabled = 1
-                let g:airline#extensions#tabline#formatter = 'default'
-                let g:airline_theme = 'bubblegum'
-                let g:airline_powerline_fonts = 1
-            ]]
+        "nvim-lualine/lualine.nvim",
+        opts = function()
+            return {
+                theme = palenight,
+                component_separators = { left = "", right = "" }, 
+                section_separators = { left = "", right = "" },
+            }
         end
     },
 }
