@@ -1,11 +1,11 @@
+-- "why is this in after?"
+-- lazy was being annoying
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
     local opts = {buffer = event.buf}
-
-    -- these will be buffer-local keybindings
-    -- because they only work if you have an active language server
-
+    -- buffer-local keybinds
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
@@ -19,24 +19,32 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local default_setup = function(server)
-  require('lspconfig')[server].setup({
-    capabilities = lsp_capabilities,
-  })
-end
+local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {
-      'basedpyright',
-      'clangd',
-      'rust_analyzer',
-  },
-  handlers = {
-    default_setup,
-  },
+    ensure_installed = {
+        'basedpyright',
+        'clangd',
+        'rust_analyzer',
+    },
+    handlers = {
+        basedpyright = function()
+            require('lspconfig').basedpyright.setup({
+                capabilities = default_capabilities,
+                settings = {
+                    basedpyright = {
+                        typeCheckingMode = "off",
+                    }
+                }
+            })
+        end,
+        function(server)
+            require('lspconfig')[server].setup({
+                capabilities = default_capabilities,
+            })
+        end,
+    },
 })
 
 local cmp = require('cmp')
