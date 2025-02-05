@@ -6,6 +6,9 @@ return {
         end,
     },
     {
+        "tpope/vim-surround",
+    },
+    {
         "cohama/lexima.vim",
     },
     {
