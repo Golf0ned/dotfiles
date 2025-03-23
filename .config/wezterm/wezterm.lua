@@ -8,6 +8,8 @@ config.color_scheme = "Catppuccin Mocha"
 config.initial_cols = 150
 config.initial_rows = 50
 
+config.audible_bell = "Disabled"
+
 config.default_domain = "WSL:Ubuntu"
 
 return config
