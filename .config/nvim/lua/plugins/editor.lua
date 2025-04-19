@@ -1,20 +1,13 @@
 return {
     {
-        "tpope/vim-commentary",
+        "lewis6991/gitsigns.nvim",
         config = function()
-            -- check repo for how to add commentstrings
+            require("gitsigns").setup()
         end,
     },
     {
-        "tpope/vim-surround",
-    },
-    {
-        "cohama/lexima.vim",
-    },
-    {
-        "mbbill/undotree",
-        config = function()
-            vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-        end,
-    },
+        "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+    }
 }

@@ -1,12 +1,53 @@
 return {
-    -- i got lazy so its all in one pile. need to clean up at some point
-    -- configure lsp
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = { "hrsh7th/cmp-nvim-lsp" },
+        config = function()
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            require("lspconfig").basedpyright.setup({
+                capabilities = capabilities,
+                settings = {
+                    basedpyright = {
+                        typeCheckingMode = "off",
+                    },
+                },
+            })
+        end,
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        dependencies = { "L3MON4D3/LuaSnip" },
+        config = function()
+            local cmp = require("cmp")
+            cmp.setup({
+                sources = {
+                    {name = "nvim_lsp"},
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<CR>"] = cmp.mapping.confirm({select = false}),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                }),
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
+            })
+        end,
+    },
     {
         "williamboman/mason.nvim",
+        opts = {},
+    },
+    {
         "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-        "hrsh7th/nvim-cmp",
-        "hrsh7th/cmp-nvim-lsp",
-        "L3MON4D3/LuaSnip",
+        opts = {
+            ensure_installed = {
+                "basedpyright",
+                "clangd",
+                "rust_analyzer",
+            },
+        },
     },
 }

@@ -8,8 +8,6 @@ return {
                     "bash",
                     "c",
                     "cpp",
-                    "css",
-                    "html",
                     "javascript",
                     "llvm",
                     "lua",
@@ -17,7 +15,6 @@ return {
                     "python",
                     "query",
                     "rust",
-                    "toml",
                     "vim",
                     "vimdoc",
                 },
@@ -30,4 +27,11 @@ return {
             })
         end,
     },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        config = function()
+            require("nvim-treesitter.configs").setup({
+            })
+        end,
+    }
 }
