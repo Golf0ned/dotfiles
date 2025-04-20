@@ -1,19 +1,17 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        opts = function()
-            return {
-                theme = palenight,
-                component_separators = { left = "", right = "" }, 
-                section_separators = { left = "", right = "" },
+        opts = {
+            options = {
+                theme = "auto",
             }
-        end
+        }
     },
     {
         "catppuccin/nvim",
         name = "catppuccin",
         priority = 1000,
-        config = function ()
+        config = function()
             -- vim.cmd.colorscheme "catppuccin-mocha"
             -- vim.cmd.colorscheme "catppuccin-macchiato"
             -- vim.cmd.colorscheme "catppuccin-frappe"
@@ -25,7 +23,7 @@ return {
         dependencies = { 'rktjmp/lush.nvim' },
         priority = 1000,
         config = function()
-            -- vim.cmd.colorscheme "lavi"
+            vim.cmd.colorscheme "lavi"
         end
     },
     {
@@ -36,7 +34,7 @@ return {
             -- vim.cmd.colorscheme "tokyonight-day"
             -- vim.cmd.colorscheme "tokyonight-night"
             -- vim.cmd.colorscheme "tokyonight-storm"
-        end 
+        end
     },
     {
         "EdenEast/nightfox.nvim",
@@ -48,7 +46,7 @@ return {
             -- vim.cmd.colorscheme "duskfox"
             -- vim.cmd.colorscheme "nightfox"
             -- vim.cmd.colorscheme "nordfox"
-            vim.cmd.colorscheme "terafox"
+            -- vim.cmd.colorscheme "terafox"
         end
     },
 }
