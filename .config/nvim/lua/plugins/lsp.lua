@@ -1,17 +1,56 @@
 return {
     {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            },
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
-        dependencies = { "hrsh7th/cmp-nvim-lsp" },
+        dependencies = {
+            { "williamboman/mason.nvim", opts = {} },
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/cmp-nvim-lsp",
+        },
         config = function()
+            -- TODO: add LSP keymaps
+
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            require("lspconfig").basedpyright.setup({
-                capabilities = capabilities,
-                settings = {
-                    basedpyright = {
-                        typeCheckingMode = "off",
+            local servers = {
+                basedpyright = {
+                    settings = {
+                        basedpyright = {
+                            typeCheckingMode = "off",
+                        },
                     },
                 },
+                clangd = {
+                    init_options = {
+                        fallbackFlags = {
+                            "-std=c++17",
+                        },
+                    }
+                },
+                lua_ls = {},
+                rust_analyzer = {},
+            }
+
+            local ensure_installed = vim.tbl_keys(servers or {})
+
+            require("mason-lspconfig").setup({
+                ensure_installed = ensure_installed,
+                automatic_installation = false,
+                handlers = {
+                    function(server_name)
+                        local server = servers[server_name] or {}
+                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                        require("lspconfig")[server_name].setup(server)
+                    end,
+                }
             })
         end,
     },
@@ -35,19 +74,5 @@ return {
                 },
             })
         end,
-    },
-    {
-        "williamboman/mason.nvim",
-        opts = {},
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = {
-                "basedpyright",
-                "clangd",
-                "rust_analyzer",
-            },
-        },
     },
 }
