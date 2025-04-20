@@ -23,7 +23,7 @@ return {
         dependencies = { 'rktjmp/lush.nvim' },
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme "lavi"
+            -- vim.cmd.colorscheme "lavi"
         end
     },
     {
@@ -46,7 +46,7 @@ return {
             -- vim.cmd.colorscheme "duskfox"
             -- vim.cmd.colorscheme "nightfox"
             -- vim.cmd.colorscheme "nordfox"
-            -- vim.cmd.colorscheme "terafox"
+            vim.cmd.colorscheme "terafox"
         end
     },
 }
