@@ -14,8 +14,8 @@ config.window_padding = {
     top = "0.25cell",
     bottom = "0.25cell",
 }
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
 config.audible_bell = "Disabled"
-
 
 return config
