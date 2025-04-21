@@ -10,5 +10,11 @@ return {
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
+        opts = {
+            spec = {
+                { "<leader>s", group = "[S]earch" },
+                { "<leader>h", group = "[H]arpoon" },
+            }
+        },
     },
 }
