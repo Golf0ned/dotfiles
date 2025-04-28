@@ -1,6 +1,3 @@
--- back
-vim.keymap.set("n", "-", vim.cmd.Ex)
-
 -- visual J/K move
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -18,19 +15,17 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 -- clear search highlight
 vim.keymap.set("n", "<esc>", "<cmd>noh<cr>")
 
-
-
-
 -- search terms stay centered
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+
+
 
 -- diagnostics
 vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
 vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
-
--- enter to clear search highlight
 
 -- primeagen things im trying
 vim.keymap.set("n", "J", "mzJ`z")

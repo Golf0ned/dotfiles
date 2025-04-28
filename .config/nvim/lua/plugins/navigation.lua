@@ -43,4 +43,24 @@ return {
             vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end, { desc = "[H]arpoon [4]" })
         end
     },
+    {
+        "stevearc/oil.nvim",
+        dependencies = { "echasnovski/mini.icons", opts = {} },
+        config = function()
+            require("oil").setup({
+                watch_for_changes = true,
+                keymaps = {
+                    ["-"] = { "actions.parent", mode = "n" },
+                    ["_"] = { "actions.open_cwd", mode = "n" },
+                },
+                view_options = {
+                    show_hidden = true,
+                },
+                win_options = {
+                    signcolumn = "yes",
+                }
+            })
+            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+        end
+    }
 }
