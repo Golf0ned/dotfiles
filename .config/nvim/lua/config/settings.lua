@@ -3,6 +3,12 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 
+-- cursorline
+vim.opt.cursorline = true
+
+-- line wrap
+vim.opt.wrap = false
+
 -- indent
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
